@@ -2,6 +2,7 @@ import React, { Component, useState } from 'react';
 import { View, Text, TextInput, Button, TouchableOpacity } from 'react-native';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import DatePicker from 'react-native-date-picker';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from 'moment';
 import 'moment/locale/pt-br';
 // import {CheckBox} from 'react-native-community';
@@ -10,13 +11,28 @@ import { form } from '../styles/index.js';
 //import uuid from 'react-native-uuid';
 
 const Form = () => {
-        
+
     moment.updateLocale('pt-br');
 
     const [tarefa, setTarefa] = useState('');
     const [data, setData] = useState(new Date());
     const [checked, setChecked] = useState(0);
     const [open, setOpen] = useState(false);
+
+    const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
+    const showDatePicker = () => {
+        setDatePickerVisibility(true);
+    };
+
+    const hideDatePicker = () => {
+        setDatePickerVisibility(false);
+    };
+
+    const handleConfirm = (date) => {
+        console.warning("Uma data foi escolhida: ", data);
+        hideDatePicker();
+    };
 
     return (
         <View style={form.container}>
@@ -33,7 +49,6 @@ const Form = () => {
                     modal
                     open={open}
                     date={data}
-                    DatePopupButton-Visible='true'
                     onConfirm={data => {
                         setOpen(false);
                         setData(data);
@@ -65,7 +80,21 @@ const Form = () => {
                 <Text>Tarefa: {tarefa}</Text>
                 <Text>Prioridade: {checked} </Text>
             </View>
-
+            < View >
+                < DateTimePickerModal
+                    isVisible={isDatePickerVisible}
+                    mode="date"
+                    onConfirm={handleConfirm}
+                    onCancel={hideDatePicker}
+                />
+                < Button title="Show Date Picker" onPress={showDatePicker} />
+                < DateTimePickerModal
+                    isVisible={isDatePickerVisible}
+                    mode="date"
+                    onConfirm={handleConfirm}
+                    onCancel={hideDatePicker}
+                />
+            </View>
 
         </View>
     );
