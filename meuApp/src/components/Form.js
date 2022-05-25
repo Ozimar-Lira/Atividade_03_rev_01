@@ -27,11 +27,14 @@ const Form = () => {
 
     const hideDatePicker = () => {
         setDatePickerVisibility(false);
+        setOpen(false);
     };
 
     const handleConfirm = (date) => {
-        console.warning("Uma data foi escolhida: ", data);
+        console.log("Uma data foi escolhida:" + date);
         hideDatePicker();
+        setOpen(false);
+        setData(data);
     };
 
     return (
@@ -49,13 +52,8 @@ const Form = () => {
                     modal
                     open={open}
                     date={data}
-                    onConfirm={data => {
-                        setOpen(false);
-                        setData(data);
-                    }}
-                    onCancel={() => {
-                        setOpen(false);
-                    }}
+                    onConfirm={handleConfirm}
+                    onCancel={hideDatePicker}
                 />
             </View>
             <Text></Text>
@@ -79,14 +77,10 @@ const Form = () => {
                 {/* Chamamos nossos States para serem exibidos os valores */}
                 <Text>Tarefa: {tarefa}</Text>
                 <Text>Prioridade: {checked} </Text>
+                
+                
             </View>
             < View >
-                < DateTimePickerModal
-                    isVisible={isDatePickerVisible}
-                    mode="date"
-                    onConfirm={handleConfirm}
-                    onCancel={hideDatePicker}
-                />
                 < Button title="Show Date Picker" onPress={showDatePicker} />
                 < DateTimePickerModal
                     isVisible={isDatePickerVisible}
