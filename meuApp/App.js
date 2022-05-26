@@ -2,7 +2,9 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ImageBackground } from 'react-native';
 import Toast from 'react-native-toast-message';
-import { Routes } from './src/routes';
+import { Header } from 'react-native/Libraries/NewAppScreen';
+import { HeaderHome } from './src/components/HeaderHome/Index.js';
+import { Routes } from './src/routes/Index.js';
 //import Header from './src/components/Header.js';
 //import Form from './src/components/Form.js';
 //let logoLocal = require('./src/images/agenda.png');
@@ -18,6 +20,7 @@ class App extends Component {
     return (
 
       <View>
+        <HeaderHome/>
         <Routes/>
         <Toast/>
          

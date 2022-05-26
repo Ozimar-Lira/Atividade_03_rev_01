@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from 'npm i @react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { Home } from '../screens/Home';
-import { Form } from '../screens/Form';
+import { Home } from '../screens/Home/Index.js';
+import { Form } from '../screens/Form/Index.js';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 

@@ -1,16 +1,47 @@
-import React, {Component} from 'react';
-import {View, Text, Image} from 'react-native';
-import { header, outroStyles } from '../styles/index.js';
+import React from 'react';
+import { KeyboardAvoidingView, Platform, ScrollView, View, Button, TextInput} from 'react-native';
+import Toast from 'react-native-toast-message';
+import uuid from 'react-native-uuid';
 
-  class Header extends Component {
-      render() {
-          return (
-            <View style = {header.background}>
-              <View style = {header.container}>
-                  <Text style={[header.title, outroStyles.primeiroTexto ]}>FORM</Text>
-              </View>
-            </View>
-          );
-      }
-  }
-  export default Header;
+import { styles } from './Styles.js';
+
+//import { Input } from '../../components/Input';
+//import { Button } from '../../components/Button';
+import { HeaderForm } from '../../components/HeaderForm/Index.js';
+
+export function Form() {
+
+
+  return (
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={styles.container}
+    >
+      <View style={styles.content}>
+        <ScrollView>
+
+          <HeaderForm />
+
+          <View style={styles.form}>
+            <TextInput
+              placeholder="Insira uma nova Tarefa"
+            />
+            <TextInput
+              placeholder="Insira uma nova Tarefa"
+              
+            />
+            <TextInput
+              placeholder="Insira uma nova Tarefa"
+            />
+          </View>
+
+          <View style={styles.footer}>
+            <Button
+              title="Salvar"
+            />
+          </View>
+        </ScrollView>
+      </View>
+    </KeyboardAvoidingView >
+  );
+}
