@@ -1,5 +1,8 @@
 import React, { Component, useState } from 'react';
 import { View, Text, TextInput, Button, TouchableOpacity } from 'react-native';
+//import AsyncStorage from 'AsyncStorage';
+import Toast from 'react-native-toast-message';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import DatePicker from 'react-native-date-picker';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
@@ -8,7 +11,7 @@ import 'moment/locale/pt-br';
 // import {CheckBox} from 'react-native-community';
 //import CheckBox from '@react-native-community/checkbox';
 import { form } from '../styles/index.js';
-//import uuid from 'react-native-uuid';
+import uuid from 'react-native-uuid';
 
 const Form = () => {
 
@@ -17,7 +20,68 @@ const Form = () => {
     const [tarefa, setTarefa] = useState('');
     const [data, setData] = useState(new Date());
     const [checked, setChecked] = useState(0);
+    const [status, setStatus] = useState(false);
     const [open, setOpen] = useState(false);
+    const [dados, setDados] = useState([]);
+
+    async function saveDados() {
+        try {
+            const id = uuid.v4();
+
+            const newDados = {
+                id,
+                tarefa,
+                data,
+                checked,
+                status
+            };
+
+            const response = await AsyncStorage.getItem("@tarefas: agenda");
+            const previusDados = response ? JSON.parse(response) : [];
+            const dados = [...previusDados, newDados]
+
+            await AsyncStorage.setItem("@tarefas: agenda", JSON.stringify(dados));
+
+            Toast.show({
+                type: 'sucess',
+                text1: 'Cadastrado com Sucesso'
+            })
+            console.log(newDados);
+        }
+        catch (error) {
+            Toast.show({
+                type: 'error',
+                text1: 'Erro no AsyncStorage'
+            })
+            console.log(error);
+
+        }
+
+    }
+
+    async function listDados() {
+        try {
+            const response = await AsyncStorage.getItem("@tarefas: agenda");
+            const dados = response ? JSON.parse(response) : [];
+            setDados(dados);
+
+            Toast.show({
+                type: 'sucess',
+                text1: 'Listagem emitida com Sucesso'
+            })
+            console.log(dados);
+        }
+        catch (error) {
+            Toast.show({
+                type: 'error',
+                text1: 'Erro na Listagem'
+            })
+            console.log(error);
+
+        }
+
+    }
+
 
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
@@ -34,7 +98,7 @@ const Form = () => {
         console.log("Uma data foi escolhida:" + date);
         hideDatePicker();
         setOpen(false);
-        setData(data);
+        setData(date);
     };
 
     return (
@@ -72,13 +136,15 @@ const Form = () => {
                 style={form.checkbox}
                 onPress={() => setChecked(checked === 0 ? 1 : 0)}
             />
-            <Button title="Pronto!"></Button>
+            <Button title="Cadastrar" onPress={saveDados}></Button>
+            <Button title="Listar" onPress={listDados}></Button>
             <View>
                 {/* Chamamos nossos States para serem exibidos os valores */}
                 <Text>Tarefa: {tarefa}</Text>
                 <Text>Prioridade: {checked} </Text>
-                
-                
+                <Text>Data: {String(data)}</Text>
+
+
             </View>
             < View >
                 < Button title="Show Date Picker" onPress={showDatePicker} />
