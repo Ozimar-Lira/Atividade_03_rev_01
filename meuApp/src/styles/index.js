@@ -1,27 +1,28 @@
 // Para que possamos utilizar o StyleSheet, temos que importa-lo
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, StatusBar } from 'react-native';
 
 var width = Dimensions.get('window').width;
 
 // Estilização do componente Form
 const form = StyleSheet.create({
   container: {
-    margin: 20
+    width: '100%',
+    marginBottom: 16
   },
   texts: {
     color: "#772ea2",
   },
-  inputs: {
-
-    backgroundColor: '#e8e8eb',
-    padding: 10,
-    marginVertical: 1,
-    width: Dimensions.get('window').width * 0.5,
-    borderColor: '#b5b5b5',
+  input: {
+    height: 56,
+    width: '100%',
+    borderColor: '#E3E3E3',
     borderWidth: 1,
-    borderRadius: 15,
-    fontSize: 18,
+    paddingLeft: 22,
+    borderRadius: 4,
+    backgroundColor: '#fff',
+
   },
+
   checkbox: {
     marginVertical: 20,
   },
@@ -30,6 +31,17 @@ const form = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
+
+  button: {
+    height: 56,
+    width: '20%',
+    backgroundColor: '#FFCC00',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontWeight: 'bold',
+    color: '#3D434D',
+    fontSize: 15
+  }
 });
 
 
@@ -38,7 +50,17 @@ const styles = StyleSheet.create({
   // Criamos o grupo de estilo alinharTexto
   alinharTexto: {
     textAlign: 'center'
-  }
+  },
+  
+  item: {
+    backgroundColor: '#f9c2ff',
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+  },
+  title1: {
+    fontSize: 32,
+  },
 });
 
 const outroStyles = StyleSheet.create({
@@ -54,7 +76,20 @@ const outroStyles = StyleSheet.create({
 
   terceiroTexto: {
     color: 'lightseagreen'
-  }
+  },
+  containerflex: {
+    flex: 1,
+    marginTop: StatusBar.currentHeight || 0,
+  },
+  item: {
+    backgroundColor: '#f9c2ff',
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+  },
+  title1: {
+    fontSize: 32,
+  },
 });
 
 const header = StyleSheet.create({
@@ -82,7 +117,21 @@ const header = StyleSheet.create({
     height: 80,
     right: 20,
     position: "absolute",
-  }
+  },
+
+  containerflex: {
+    flex: 1,
+    marginTop: StatusBar.currentHeight || 0,
+  },
+  item: {
+    backgroundColor: '#f9c2ff',
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+  },
+  title1: {
+    fontSize: 32,
+  },
 });
 
 // Para que nosso arquivo possa ser importado, temos que exportar ele

@@ -10,9 +10,10 @@ import { styles } from './Styles.js';
 
 export function Home() {
 //  const [data, setData] = useState<CardProps[]>([]);
-
+//    console.log('Entrou na home')
   return (
     <View style={styles.container}>
+      
       <HeaderHome/>
 
       <View style={styles.listHeader}>

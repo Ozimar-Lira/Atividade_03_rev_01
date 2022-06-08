@@ -79,6 +79,7 @@ const Form = () => {
             console.log(error);
 
         }
+        return (dados);
 
     }
 
@@ -104,12 +105,12 @@ const Form = () => {
     return (
         <View style={form.container}>
             <Text style={form.texts}>Nova Tarefa: </Text>
-            <TextInput placeholder="Insira uma nova Tarefa" style={form.inputs} onChangeText={text => setTarefa(text)} />
+            <TextInput placeholder="Insira uma nova Tarefa" style={form.input} onChangeText={text => setTarefa(text)} />
             <Text></Text>
             <Text style={form.texts}>Data Tarefa: </Text>
 
             <View style={form.container}>
-                <TouchableOpacity onPress={() => setOpen(true)} style={form.input}>
+                <TouchableOpacity onPress={() => {setOpen(true), setStatus(false)}} style={form.input}>
                     <Text style={form.data}>{moment(data).format('DD/MM/YYYY')}</Text>
                 </TouchableOpacity>
                 <DatePicker
@@ -122,7 +123,7 @@ const Form = () => {
             </View>
             <Text></Text>
             <BouncyCheckbox
-                size={25}
+                size={15}
                 fillColor="red"
                 unfillColor="#FFFFFF"
                 text="Prioridade!"
@@ -136,8 +137,10 @@ const Form = () => {
                 style={form.checkbox}
                 onPress={() => setChecked(checked === 0 ? 1 : 0)}
             />
-            <Button title="Cadastrar" onPress={saveDados}></Button>
-            <Button title="Listar" onPress={listDados}></Button>
+            <Button title="Cadastrar" onPress={saveDados} style={form.button}></Button>
+            <Text/>
+            <Button title="Listar" onPress={listDados} style={form.button}></Button>
+            <Text/>
             <View>
                 {/* Chamamos nossos States para serem exibidos os valores */}
                 <Text>Tarefa: {tarefa}</Text>
@@ -146,6 +149,7 @@ const Form = () => {
 
 
             </View>
+            <Text/>
             < View >
                 < Button title="Show Date Picker" onPress={showDatePicker} />
                 < DateTimePickerModal
@@ -155,7 +159,7 @@ const Form = () => {
                     onCancel={hideDatePicker}
                 />
             </View>
-
+           
         </View>
     );
 }

@@ -3,24 +3,18 @@ import React from 'react';
 //import MaterialIcon from 'material-icons-react';
 import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity, View, Text } from 'react-native';
-
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { styles } from './Styles.js';
+import { Home } from '../../screens/Home/Index.js';
+import Form from '../Form.js';
 
 export function HeaderForm() {
   const navigation = useNavigation();
+ // console.log('Entrou na HeanderForm')
 
   return (
-    <View style={styles.header}>
-      <TouchableOpacity
-        onPress={() => navigation.goBack()}
-        style={styles.button}
-      >
-  
-      </TouchableOpacity>
-
-      <Text style={styles.title}>
-        Cadastro
-      </Text>
+    <View>
+      <Form></Form>
     </View>
   );
 }

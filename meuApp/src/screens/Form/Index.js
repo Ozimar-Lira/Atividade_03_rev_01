@@ -10,7 +10,7 @@ import { styles } from './Styles.js';
 import { HeaderForm } from '../../components/HeaderForm/Index.js';
 
 export function Form() {
-
+  console.log('Entrou na Form')
 
   return (
     <KeyboardAvoidingView

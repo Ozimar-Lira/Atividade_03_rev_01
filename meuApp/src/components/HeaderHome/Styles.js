@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, StatusBar} from 'react-native';
+//import StatusBar from '@react-native-community/status-bar';
 
 export const styles = StyleSheet.create({
   container: {
@@ -8,7 +9,8 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
-    paddingHorizontal: 24
+    paddingHorizontal: 24,
+ //   flex:1
   },
   button: {
     height: 56,
@@ -35,6 +37,119 @@ export const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 5,
-  }
+  },
+  containerflex: {
+  //  flex: 1,
+ //   marginTop: StatusBar.currentHeight || 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    alignItems: 'center',
+   // flexDirection: 'row',
+    //paddingHorizontal: 5,
+    paddingVertical: 25,
+    
+    marginTop:30
+  },
+  item: {
+    flexDirection: 'row',
+    marginLeft: 30,
+    marginRight: 30,
+    borderBottomWidth: 1,
+    borderBottomColor: '#444',
+    paddingTop: 15,
+    paddingBottom: 15,
 
+
+  },
+  title1: {
+
+  //  fontSize: 32,
+    color: '#FFF',
+    fontSize: 15,
+ //   flexDirection: 'row',
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 40,
+    backgroundColor: '#b8cdff',
+    paddingHorizontal: 20
+  },
+
+  itemflex: {
+    flex:1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginLeft: 30,
+    marginRight: 30,
+    paddingTop: 15,
+    paddingBottom: 15,
+    borderRadius: 24,
+    borderColor: '#E3E3E3',
+    borderWidth: 2,
+    backgroundColor: '#b8cdff'
+  },
+  itemPhoto: {
+  //  Size: 32,
+    color: '#FFF',
+    fontSize: 15,
+ //   flexDirection: 'row',
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 40,
+    backgroundColor: '#b8cdff',
+    paddingHorizontal: 20
+  },
+  itemInfo: {
+    marginLeft: 20,
+  },
+  itemP1: {
+    fontSize: 20,
+    color: '#999999',
+    marginBottom: 5
+  },
+  itemP2: {
+    fontSize: 14,
+    color: '#999999',
+  },
+
+aberto: {
+  fontSize: 14,
+  color: 'red',
+  textDecorationLine: 'none', 
+
+},
+
+concluido: {
+  fontSize: 14,
+  color: 'green',
+  textDecorationLine: 'line-through', 
+  textDecorationStyle: 'solid' 
+},
+
+atrasado: {
+  fontSize: 14,
+  color: 'red',
+  alignItems: 'center',
+  backgroundColor: 'black',
+ // textDecorationLine: 'line-through', 
+  textDecorationStyle: 'solid' 
+},
+
+noprazo: {
+  fontSize: 14,
+  color: 'green',
+  alignItems: 'center',
+//  textDecorationLine: 'line-through', 
+  textDecorationStyle: 'solid' 
+},
+
+  checkbox: {
+    marginVertical: 20,
+  },
 });
