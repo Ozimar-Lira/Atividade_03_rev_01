@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, StatusBar} from 'react-native';
-//import StatusBar from '@react-native-community/status-bar';
+
 
 export const styles = StyleSheet.create({
   container: {
@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     paddingHorizontal: 24,
- //   flex:1
+ 
   },
   button: {
     height: 56,
@@ -39,15 +39,11 @@ export const styles = StyleSheet.create({
     borderRadius: 5,
   },
   containerflex: {
-  //  flex: 1,
- //   marginTop: StatusBar.currentHeight || 0,
     width: '100%',
     height: '100%',
     backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
-   // flexDirection: 'row',
-    //paddingHorizontal: 5,
     paddingVertical: 25,
     
     marginTop:30
@@ -65,10 +61,8 @@ export const styles = StyleSheet.create({
   },
   title1: {
 
-  //  fontSize: 32,
     color: '#FFF',
     fontSize: 15,
- //   flexDirection: 'row',
     flex: 1,
     width: '100%',
     alignItems: 'center',
@@ -93,10 +87,8 @@ export const styles = StyleSheet.create({
     backgroundColor: '#b8cdff'
   },
   itemPhoto: {
-  //  Size: 32,
     color: '#FFF',
     fontSize: 15,
- //   flexDirection: 'row',
     flex: 1,
     width: '100%',
     alignItems: 'center',
@@ -137,7 +129,6 @@ atrasado: {
   color: 'red',
   alignItems: 'center',
   backgroundColor: 'black',
- // textDecorationLine: 'line-through', 
   textDecorationStyle: 'solid' 
 },
 
@@ -145,7 +136,6 @@ noprazo: {
   fontSize: 14,
   color: 'green',
   alignItems: 'center',
-//  textDecorationLine: 'line-through', 
   textDecorationStyle: 'solid' 
 },
 

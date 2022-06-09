@@ -1,67 +1,14 @@
-import React, { Component, useState, useEffect, useCallback } from 'react';
-import { Text, View, TouchableOpacity, Image, Button, FlatList, StatusBar, ScrollView, Alert, SeparatorItem } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React, { Component, useState, useCallback } from 'react';
+import { Text, View, TouchableOpacity, Image, FlatList, Alert, SeparatorItem } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-//import MaterialIcon from 'material-icons-react';
-//import { MaterialIcons } from '@expo/vector-icons';
-import { Lista } from '../Lista.js';
 import { styles } from './Styles.js';
-import { Home } from '../../screens/Home/Index.js';
 import SafeAreaView from 'react-native-safe-area-view';
-//import React, { Component, useState } from 'react';
-import Form from '../Form.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from '@react-navigation/native';
 import moment from 'moment';
 import 'moment/locale/pt-br';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import Toast from 'react-native-toast-message';
 
-/*const [dado, setDados] = useState([]);
-
-const response = AsyncStorage.getItem("@tarefas: agenda");
-const dados = response ? JSON.parse(response) : [];
-setDados(dados);
-console.log('A listagem é:'+ dado);
-*/
-
-const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'First Item',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d73',
-    title: 'Forty Item',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d75',
-    title: 'Fifty Item',
-  }
-];
-
-/*const confirmarDelete = ({ id }) =>
-  //(console.log(id));
-  Alert.alert(
-    "MENSAGEM DE ALERTA",
-    "Deseja apagar essa tarefa?",
-    [
-      {
-        text: "Cancelar",
-        onPress: () => console.log("Cancel Pressed"),
-        style: "cancel"
-      },
-      { text: "Deletar", onPress: () => handleRemove(id) }
-    ]
-  );*/
 
 export function HeaderHome({ navigation }) {
 
@@ -89,7 +36,7 @@ export function HeaderHome({ navigation }) {
         <View style={styles.itemInfo} >
           <Text style={styles.itemP1}>{tarefa}</Text>
           <Text style={styles.itemP2}>{moment(data).format('DD/MM/YYYY')}</Text>
-          <Text style={moment(data, 'YYYY/MM/DD').diff(moment(dataNow, 'YYYY/MM/DD'), 'days')<0 ? styles.atrasado: styles.noprazo}>{moment(data, 'YYYY/MM/DD').diff(moment(dataNow, 'YYYY/MM/DD'), 'days')<0 ? 'Atraso de:' + moment(data, 'YYYY/MM/DD').diff(moment(dataNow, 'YYYY/MM/DD'), 'days') + 'dias': 'No prazo'}</Text>
+          <Text style={moment(data, 'YYYY/MM/DD').diff(moment(dataNow, 'YYYY/MM/DD'), 'days') < 0 ? styles.atrasado : styles.noprazo}>{moment(data, 'YYYY/MM/DD').diff(moment(dataNow, 'YYYY/MM/DD'), 'days') < 0 ? 'Atraso de:' + moment(data, 'YYYY/MM/DD').diff(moment(dataNow, 'YYYY/MM/DD'), 'days') + 'dias' : 'No prazo'}</Text>
           <Text style={checked === 1 ? styles.aberto : styles.concluido}>{checked === 1 ? 'Prioritária' : 'Não Prioritária'}</Text>
           <Text style={status === true ? styles.concluido : styles.aberto}>{status === true ? 'Atividade Encerrada' : 'Atividade Aberta'}</Text>
         </View>
@@ -106,18 +53,10 @@ export function HeaderHome({ navigation }) {
     <Item tarefa={item.tarefa} data={item.data} checked={item.checked} id={item.id} status={item.status} />
   );
 
-
-
-//  const [tarefa, setTarefa] = useState('');
-//  const [data, setData] = useState(new Date());
-//  const [checked, setChecked] = useState(0);
-//  const [status, setStatus] = useState(false);
-//  const [open, setOpen] = useState(0);
   const [dados, setDados] = useState([]);
 
 
   const confirmarDelete = ({ id }) =>
-    //(console.log(id));
     Alert.alert(
       "MENSAGEM DE ALERTA",
       "Deseja apagar essa tarefa?",
@@ -132,17 +71,16 @@ export function HeaderHome({ navigation }) {
     );
 
   const confirmarFechamento = ({ id }) =>
-    //  (console.log(id));
     Alert.alert(
-      "MENSAGEM DE ALERTA",
-      "Deseja encerrar a tarefa?",
+      "MENSAGEM DE ALERTA (Abrir/Encerrar Atividade",
+      "Deseja alterar o status da tarefa?",
       [
         {
-          text: "Abrir",
+          text: "Cancelar",
           onPress: () => { },
           style: "cancel"
         },
-        { text: "Fechar", onPress: () => handleAlter(id) }
+        { text: "Alterar o Status", onPress: () => handleAlter(id) }
       ]
 
     );
@@ -151,15 +89,9 @@ export function HeaderHome({ navigation }) {
   async function handleAlter(id) {
     const response = await AsyncStorage.getItem("@tarefas: agenda");
     const previousData = response ? JSON.parse(response) : [];
-    //   previousData.sort((a, b) => b.priori - a.priori);
-
     const index = previousData.map(item => item.id).indexOf(id);
     dados[index].status = !dados[index].status;
     AsyncStorage.setItem("@tarefas: agenda", JSON.stringify(dados));
-    //  setData(data.sort((a, b) => b.priori - a.priori));
-    //  setFeito(!feito);
-  //  console.log(moment(item.data).diff(new Date(), 'days'));
-  //  console.log('handleAlter   ' + JSON.stringify(dados));
     fetchData();
   }
 
@@ -170,13 +102,9 @@ export function HeaderHome({ navigation }) {
 
     const data = previousData.filter(item => item.id !== id);
     AsyncStorage.setItem("@tarefas: agenda", JSON.stringify(data));
-    // setData(data.sort((a, b) => b.priori - a.priori));
-    // setFeito(!feito);
     fetchData();
     console.log(data);
     console.log('handleRemove   ' + JSON.stringify(data));
-
-
   }
 
   async function fetchData() {
@@ -191,17 +119,6 @@ export function HeaderHome({ navigation }) {
       fetchData();
     }, []),
   );
-
-
-
-  // const navigation = useNavigation();
-  //console.log('Entrou na HeanderHome')
-
-  function handleAdd() {
-    console.log('Clicou no botao')
-    //   navigation.navigate("Form", {});
-
-  }
 
   return (
 

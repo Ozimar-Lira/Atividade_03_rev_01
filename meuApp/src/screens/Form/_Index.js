@@ -2,11 +2,7 @@ import React from 'react';
 import { KeyboardAvoidingView, Platform, ScrollView, View, Button, TextInput} from 'react-native';
 import Toast from 'react-native-toast-message';
 import uuid from 'react-native-uuid';
-
-import { styles } from './Styles.js';
-
-//import { Input } from '../../components/Input';
-//import { Button } from '../../components/Button';
+import { styles } from './_Styles.js';
 import { HeaderForm } from '../../components/HeaderForm/Index.js';
 
 export function Form() {

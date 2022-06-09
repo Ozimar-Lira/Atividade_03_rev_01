@@ -10,6 +10,7 @@ const form = StyleSheet.create({
     marginBottom: 16
   },
   texts: {
+    
     color: "#772ea2",
   },
   input: {

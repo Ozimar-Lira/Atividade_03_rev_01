@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-//import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
 export const styles = StyleSheet.create({
   header: {
@@ -10,7 +9,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center', 
     flexDirection: 'row',
     padding: 24,
-    paddingTop: 24/*+ getStatusBarHeight()*/,
+    paddingTop: 24,
     marginBottom: 24
   },
   form: {
